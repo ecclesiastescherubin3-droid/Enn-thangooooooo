@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Darshini ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+/* ---------- GLOBAL RESET ---------- */
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Poppins', sans-serif;background:#fff4f6;color:#333;text-align:center;overflow-x:hidden;}
+
+/* ---------- THEME COLORS ---------- */
+:root {
+    --primary: #ff6b8a;
+    --primary-dark: #ff3f69;
+    --background: #fff4f6;
+    --text-color: #333;
+}
+
+/* ---------- HEADINGS ---------- */
+h1, h2 {font-family:'Sacramento', cursive;}
+
+/* ---------- BUTTON ---------- */
+button {
+    padding:14px 28px;
+    border:none;
+    border-radius:8px;
+    background:var(--primary);
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.25s ease;
+}
+button:hover {background:var(--primary-dark);transform:translateY(-3px);}
+
+/* ---------- RUNAWAY BUTTONS ---------- */
+#runawayBtn, #noBtn {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+/* ---------- FLOATING HEARTS ---------- */
+.heart {
+    position:fixed;
+    bottom:-20px;
+    color:var(--primary);
+    font-size:18px;
+    animation: floatUp 6s ease-in infinite;
+    opacity:0.7;
+    pointer-events:none;
+}
+@keyframes floatUp {
+    0% {transform:translateY(0) scale(0.7) rotate(0deg);opacity:1;}
+    100% {transform:translateY(-120vh) scale(1.8) rotate(30deg);opacity:0;}
+}
+
+/* ---------- PAGE TRANSITION ---------- */
+.page {animation:fadeSlide 0.9s ease both;}
+@keyframes fadeSlide {from {opacity:0;transform:translateY(30px);} to {opacity:1;transform:translateY(0);}}
+
+/* ---------- LOADING SCREEN ---------- */
+.loading-text {margin-top:40vh;font-size:2rem;font-weight:bold;color:var(--primary);}
+.spinner {margin:25px auto;width:45px;height:45px;border-radius:50%;border:4px solid #fff;border-top:4px solid var(--primary);animation:spin 1s linear infinite;}
+@keyframes spin {to {transform:rotate(360deg);}}
+
+/* ---------- PASSWORD SCREEN ---------- */
+.password-box {margin-top:25vh;}
+.password-input {padding:12px;width:200px;margin-top:20px;border-radius:8px;border:2px solid var(--primary);outline:none;font-size:1rem;}
+.hint {margin-top:15px;opacity:0.7;font-size:0.9rem;}
+
+/* ---------- SPARKLE ---------- */
+.sparkle {position:fixed;pointer-events:none;width:6px;height:6px;background:radial-gradient(circle,#fff 0%,rgba(255,255,255,0.4) 40%,rgba(255,255,255,0) 70%);border-radius:50%;opacity:0;animation:sparkleMove 1.8s ease-out forwards;filter:drop-shadow(0 0 8px var(--primary));}
+@keyframes sparkleMove {
+    0% {opacity:0;transform:scale(0.3) translateY(0);}
+    20% {opacity:1;transform:scale(1);}
+    80% {opacity:1;transform:scale(1.2) translateY(-60px);}
+    100% {opacity:0;transform:scale(0.5) translateY(-100px);}
+}
+
+/* ---------- HEART EXPLOSION ---------- */
+.heart-explosion {position:fixed;pointer-events:none;font-size:22px;animation:explode 1s ease-out forwards;opacity:0;}
+@keyframes explode {
+    0% {opacity:1;transform:scale(0.5) translate(0,0);}
+    80% {opacity:1;}
+    100% {opacity:0;transform:scale(1.4) translate(var(--x), var(--y));}
+}
+
+/* ---------- IMAGE ---------- */
+img {border-radius:12px;object-fit:cover;box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+</style>
+</head>
+<body class="page">
+
+<!-- ---------- AUDIO ---------- -->
+<audio id="bg-music" src="music.mp3" loop></audio>
+
+<!-- ---------- LOADING SCREEN ---------- -->
+<div id="loadingScreen" class="loading-text">
+    Load Aagudhuuu Chellooooo Konjoooo Waitttt Pannungaaaaaaa Thangameyyyyyyyyy… 🤍
+    <div class="spinner"></div>
+</div>
+
+<!-- ---------- PASSWORD SCREEN ---------- -->
+<div id="passwordScreen" class="password-box" style="display:none;">
+    <h1>Darshhhh Kuttiiiii Vanakammmmmmmmmmmm😘😘😘😘😘🤍🤍🤍🤍🤍</h1>
+    <p>Password Ahhh Enter Pannungaaa Amminiiiiiiiiii😘😘😘😘:</p>
+    <input id="pwd" class="password-input" type="password" placeholder="Password">
+    <button onclick="checkPassword()">Enter</button>
+    <p class="hint">Hint: Unnodaa special date chellooooo😘😘😘😘😘🤍🤍🤍🤍🤍</p>
+</div>
+
+<!-- ---------- MAIN CONTENT ---------- -->
+<div id="mainContent" style="display:none;">
+    <!-- START PAGE -->
+    <div id="pageIndex" class="page">
+        <h1 style="margin-top:27vh; font-size:3rem;">Ennavaal Kagaaa 🤍</h1>
+        <p style="opacity:0.7; max-width:300px; margin:auto;">
+            Edhooooo Ennalaaaaa Mudinjadhuuu Thangameyyyy
+        </p>
+        <button onclick="showPage('loveme')">Next 💖</button>
+    </div>
+
+    <!-- LOVE QUESTION PAGE -->
+    <div id="loveme" class="page" style="display:none; position:relative; height:80vh;">
+        <h1 style="margin-top:20vh; font-size:2.5rem;">Amminiii Enna Kadhalikuringalaa???? 😘😘😘😘😘😘😘😘</h1>
+        <p style="max-width:350px; margin:auto; opacity:0.85;">Be honest… 💌 Nooooo Nu Dhaaa Solli Paaruuu Unnaku Irrukuuuu</p>
+        <button onclick="showPage('proposal')">Yes🤍🤍🤍🤍🤍</button>
+        <button id="noBtn">No ❌</button>
+    </div>
+
+    <!-- PROPOSAL PAGE -->
+    <div id="proposal" class="page" style="display:none;">
+        <h1 style="margin-top:22vh;">Thangooooooooooooooooooo 🤍🤍🤍🤍🤍</h1>
+        <p style="max-width:350px; margin:auto; opacity:0.85;">
+            Yayyyyyyyyyyyyyyy!!!!!!!!!! Ennnn Thangooooooooo Yes Nuuu Solliruchuuuuuuuuuuuuuuu!!!!!!!!!!!!!
+        </p>
+        <p style="margin-top:30px;">Anaaaaaa Idhaaaaa Vidaaahhhhhh Majaaaaaa Onnuuuuuu Irrukuuuuuuuu!!!!!!!</p>
+        <button onclick="showPage('marryme')">Continue Kuduuu Diiiiiiiiii Chellooooooooooo!!!!!! 😘😘😘😘😘😘😘</button>
+    </div>
+
+    <!-- MARRY ME PAGE -->
+    <div id="marryme" class="page" style="display:none; position:relative; height:80vh;">
+        <h1 style="margin-top:20vh; font-size:2.7rem;">Thangameyyyyyyyy… 💍</h1>
+        <p style="max-width:350px; margin:auto; opacity:0.9;">
+           Sooooooooooooooo Ingaaaa Dhaaan Ennodaaa Unmaiyaaaa Kelviiii!
+        </p>
+        <h2 style="font-size:2.2rem; margin-top:40px; color:var(--primary-dark);">
+           Darshini Aagiyaaa Neee Ennai Thirumanam Seidhuuu Kollaa Samaadham Ahh???
+        </h2>
+        <button onclick="showPage('baby')">Samadham 🤍🤍🤍🤍🤍 (Neeeee Samadham Dhaaaa Solluven Nuuu Theriyum)</button>
+        <button id="runawayBtn">Illai(Solli Dhaa Paaren Illa Nuuu)😏😏😏</button>
+    </div>
+
+    <!-- BABY PHOTO PAGE -->
+    <div id="baby" class="page" style="display:none;">
+        <h2 style="margin-top:20vh; font-size:2rem;">Ennodaaaa Kuttiiiiii Darshuuuuuuuu🥺🤍🤍🤍🤍🤍</h2>
+        <img src="baby.jpg" style="width:260px; height:260px; margin-top:30px;">
+        <p style="max-width:350px; margin:25px auto; opacity:0.85;">
+            Seriiiiiii Kalyanuthukuuu Okieee Sollitahhhhhh Eppooo Ennakuuu Kutti Dharshuuuuu Varruvangaaaaa😏😏😏😏???????
+        </p>
+            <p style="max-width:350px; margin:25px auto; opacity:0.85;">
+            Ennnn Thangaadhaaa Paarungaa Daaaaaaaa Kolandhaiylaiyummmmmm Majaaaaa Vaaah Irrukaaaahhhhhhhh😭😭😭😭😭😭🫂🫂🫂🫂🫂🫂🎀🎀🎀🎀🎀🎀
+           </p> 
+           <p style="max-width:350px; margin:25px auto; opacity:0.85;">
+             I loveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu diiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii thangameyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy😘😘😘😘😘😘😘🤍🤍🤍🤍🤍
+           </p>
+        <button onclick="showPage('pageIndex')">Back to Start</button>
+    </div>
+</div>
+
+<script>
+// ---------- HEARTS ----------
+setInterval(()=>{
+    const h=document.createElement('div');
+    h.classList.add('heart');
+    h.innerHTML='🤍';
+    h.style.left=Math.random()*window.innerWidth+'px';
+    h.style.fontSize=(16+Math.random()*25)+'px';
+    h.style.animationDuration=(5+Math.random()*3)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+},350);
+
+// ---------- SPARKLES ----------
+setInterval(()=>{
+    const s=document.createElement('div');
+    s.classList.add('sparkle');
+    s.style.left=Math.random()*window.innerWidth+'px';
+    s.style.top=Math.random()*window.innerHeight+'px';
+    s.style.width=s.style.height=(3+Math.random()*6)+'px';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),2000);
+},200);
+
+// ---------- HEART EXPLOSION ----------
+window.addEventListener("click",(e)=>{
+    for(let i=0;i<12;i++){
+        const h=document.createElement("div");
+        h.classList.add("heart-explosion");
+        h.innerHTML="🤍";
+        h.style.left=e.clientX+"px";
+        h.style.top=e.clientY+"px";
+        const angle=Math.random()*2*Math.PI;
+        const distance=40+Math.random()*60;
+        const x=Math.cos(angle)*distance+"px";
+        const y=Math.sin(angle)*distance+"px";
+        h.style.setProperty("--x",x);
+        h.style.setProperty("--y",y);
+        h.style.fontSize=(16+Math.random()*12)+"px";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),1000);
+    }
+});
+
+// ---------- BACKGROUND MUSIC ----------
+window.addEventListener("click",()=>{const m=document.getElementById("bg-music");if(m)m.play();});
+
+// ---------- PAGE MANAGEMENT ----------
+function showPage(id){
+    const pages=["pageIndex","loveme","proposal","marryme","baby"];
+    pages.forEach(p=>document.getElementById(p).style.display="none");
+    document.getElementById(id).style.display="block";
+}
+
+// ---------- PASSWORD ----------
+const correctPassword="19/06/2007";
+function checkPassword(){
+    const val=document.getElementById("pwd").value;
+    if(val===correctPassword){
+        document.getElementById("passwordScreen").style.display="none";
+        document.getElementById("mainContent").style.display="block";
+    } else { alert("Incorrect password 😢"); }
+}
+
+// ---------- LOADING SCREEN ----------
+window.onload=()=>{
+    setTimeout(()=>{
+        document.getElementById("loadingScreen").style.display="none";
+        document.getElementById("passwordScreen").style.display="block";
+    },2300);
+};
+
+// ---------- RUNAWAY BUTTONS ----------
+const runawayBtn = document.getElementById('runawayBtn');
+runawayBtn.addEventListener('mouseenter', () => {
+    const maxX = window.innerWidth - runawayBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - runawayBtn.offsetHeight - 20;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+    runawayBtn.style.left = randomX + 'px';
+    runawayBtn.style.top = randomY + 'px';
+});
+
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseenter', () => {
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+    noBtn.style.left = randomX + 'px';
+    noBtn.style.top = randomY + 'px';
+});
+</script>
+
+</body>
+</html>
